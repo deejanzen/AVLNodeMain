@@ -6,15 +6,18 @@ public class AVLNode{
     private AVLNode right;
     private int height;
 
+
+
     //constructor creates unique id = internalName
     public AVLNode(String key){
         this.key = key;
         left = null;
         right = null;
         height = 0;
+
     }
 
-    //duplicate checking done via illegalArgumentException
+    //duplicate checking done via return < 0
     public int insert(String newKey){
         //base
         if ( getKey().compareTo(newKey) > 0 && left == null) {
@@ -53,8 +56,41 @@ public class AVLNode{
         }
     }//insert
 
+    public void inOrderTraversal(){
+        if (this.key == null) System.out.println("empty");
+        System.out.print(getCount() +" elements: ");
+        inOrderTraversalHelper(this);
+        System.out.println();
+    }
+    private void inOrderTraversalHelper(AVLNode current){
+        if (current == null) return;
 
+        inOrderTraversalHelper(current.getLeft());
+        System.out.print(current.getKey() + " ");
+        inOrderTraversalHelper(current.getRight());
+    }
 
+    public void preOrderTraversal(){
+        if (this.key == null) System.out.println("empty");
+        System.out.print(getCount() +" elements: ");
+        preOrderTraversalHelper(this);
+        System.out.println();
+    }
+
+    private void preOrderTraversalHelper(AVLNode current){
+        if (current == null) return;
+        System.out.print(current.getKey() + " ");
+        preOrderTraversalHelper(current.getLeft());
+        preOrderTraversalHelper(current.getRight());
+    }
+
+    public int getCount(){
+        return getCountHelper(this);
+    }
+    private int getCountHelper(AVLNode current){
+        if (current == null) return 0;
+        return 1 + getCountHelper(current.getLeft()) + getCountHelper(current.getRight());
+    }
 
     public void setHeight(int height){
         this.height = height;
@@ -94,16 +130,7 @@ public class AVLNode{
             return Math.max(1 + getLeft().getHeight(), 1 + getRight().getHeight());
     }
 
-    public int getCount(){
-        //base
-        if (left == null && right == null ) return 1;
-        //recurses
-        if (left != null && right == null)
-            return 1 + getLeft().getCount();
-        if (left == null && right != null)
-            return 1 + getRight().getCount();
-        return 1 + getLeft().getCount() + getRight().getCount();
-    }
+
 
     //toArray does in-order traversal via a helper method. Setup using arrayList<>
     public String[] toArray(){
