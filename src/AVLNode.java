@@ -101,6 +101,16 @@ public class AVLNode{
 
     }
 
+    public String findMin(){
+        if (this.key == null) return null;
+        return findMinHelper(this);
+    }
+
+    private String findMinHelper(AVLNode current){
+        if (current.getLeft() == null) return current.getKey();
+        return findMinHelper(current.getLeft());
+    }
+
     public void setHeight(int height){
         this.height = height;
     }

@@ -45,10 +45,12 @@ public class AVLNodeTest {
 
 
         assertEquals(1, root0.insert("h"));
+        assertEquals("e", root0.findMin());
         assertEquals(2, root0.insert("a"));
         assertEquals(2, root0.insert("s"));
         root0.inOrderTraversal();
         root0.preOrderTraversal();
+        assertEquals("a", root0.findMin());
 
 
 
