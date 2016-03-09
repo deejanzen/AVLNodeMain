@@ -9,6 +9,7 @@ public class AVLNodeTest {
     public void avlTest(){
         AVLNode root = new AVLNode("d");//1
         assertEquals(1,root.getCount());
+        assertEquals("d",root.find("d"));
 
         assertEquals(-1,root.insert("d"));//still 1
         assertEquals(1,root.getCount());
@@ -29,20 +30,23 @@ public class AVLNodeTest {
         assertEquals(5, root.getCount());
         assertEquals(-1, root.insert("a"));
         assertEquals(5, root.getCount());
+
+        assertEquals("e",root.find("e"));
+        assertEquals(null,root.find("z"));
         root.inOrderTraversal();
         root.preOrderTraversal();
 
 
 
-        AVLNode root0 = new AVLNode("e");
+        AVLNode root0 = new AVLNode("g");
 
 
-        assertEquals(1, root0.insert("d"));
+        assertEquals(1, root0.insert("e"));
 
 
-        assertEquals(2, root0.insert("c"));
-        assertEquals(3, root0.insert("b"));
-        assertEquals(4, root0.insert("a"));
+        assertEquals(1, root0.insert("h"));
+        assertEquals(2, root0.insert("a"));
+        assertEquals(2, root0.insert("s"));
         root0.inOrderTraversal();
         root0.preOrderTraversal();
 

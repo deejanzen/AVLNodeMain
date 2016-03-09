@@ -6,15 +6,11 @@ public class AVLNode{
     private AVLNode right;
     private int height;
 
-
-
-    //constructor creates unique id = internalName
     public AVLNode(String key){
         this.key = key;
         left = null;
         right = null;
         height = 0;
-
     }
 
     //duplicate checking done via return < 0
@@ -90,6 +86,19 @@ public class AVLNode{
     private int getCountHelper(AVLNode current){
         if (current == null) return 0;
         return 1 + getCountHelper(current.getLeft()) + getCountHelper(current.getRight());
+    }
+
+    public String find(String toFind){
+        return findHelper(this, toFind);
+    }
+    private String findHelper(AVLNode current, String toFind){
+        if (current == null) return null;
+        if (current.getKey().equals(toFind)) return current.getKey();
+        if (current.getKey().compareTo(toFind) > 0)
+            return findHelper(current.getLeft(), toFind);
+        else
+            return findHelper(current.getRight(), toFind);
+
     }
 
     public void setHeight(int height){
