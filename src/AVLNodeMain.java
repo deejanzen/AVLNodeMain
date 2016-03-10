@@ -1,5 +1,7 @@
 /**
- * Created by djanzen on 3/8/16.
+ * Dustin Janzen
+ * sp16 345
+ * project 3
  */
 public class AVLNodeMain {
 

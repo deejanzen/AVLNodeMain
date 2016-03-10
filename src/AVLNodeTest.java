@@ -11,6 +11,7 @@ public class AVLNodeTest {
         assertEquals(1,root.getCount());
         assertEquals("d",root.find("d"));
 
+
         assertEquals(-1,root.insert("d"));//still 1
         assertEquals(1,root.getCount());
 
@@ -51,6 +52,48 @@ public class AVLNodeTest {
         root0.inOrderTraversal();
         root0.preOrderTraversal();
         assertEquals("a", root0.findMin());
+
+
+
+
+    }
+    @Test
+    public void removeTests(){
+        AVLNode root = new AVLNode("e");
+        root.inOrderTraversal();
+        assertEquals(-1,root.remove("a"));
+        root.inOrderTraversal();
+        assertEquals(-1,root.remove("b"));
+        root.inOrderTraversal();
+        assertEquals(-1,root.insert("e"));
+        root.inOrderTraversal();
+    }
+    @Test
+    public void removeTests0(){
+        AVLNode root = new AVLNode("d");
+
+        System.out.println(root.toDotFile(true));
+        root.preOrder();
+        assertEquals(1,root.insert("b"));
+        System.out.println(root.toDotFile(true));
+        root.preOrder();
+        assertEquals(1,root.insert("f"));
+        root.preOrder();
+        assertEquals(2,root.insert("a"));
+        assertEquals(2,root.insert("c"));
+        assertEquals(2,root.insert("e"));
+        assertEquals(2,root.insert("g"));
+
+        System.out.println(root.toDotFile(true));
+
+        root.preOrder();
+        root.remove("d");
+        root.preOrder();
+        root.remove("e");
+        root.preOrder();
+        root.remove("a");
+        root.preOrder();
+
 
 
 
