@@ -70,7 +70,14 @@ public class AVLNodeTest {
     }
     @Test
     public void removeTests0(){
-        AVLNode root = new AVLNode("d");
+        AVLNode root = new AVLNode(null);
+        System.out.println(root.find("d"));
+        root.insert("d");
+        System.out.println(root.find("d"));
+        root.insert("a");
+        root.preOrder();
+        root.preOrderTraversal();
+        root.inOrderTraversal();
 
         System.out.println(root.toDotFile(true));
         root.preOrder();
@@ -86,17 +93,27 @@ public class AVLNodeTest {
 
         System.out.println(root.toDotFile(true));
 
-        root.preOrder();
-        root.remove("d");
-        root.preOrder();
-        root.remove("e");
-        root.preOrder();
-        root.remove("a");
-        root.preOrder();
+//        root.preOrder();
+//        root.remove("d");
+//        root.preOrder();
+//        root.remove("e");
+//        root.preOrder();
+//        root.remove("a");
+//        root.preOrder();
 
 
 
 
 
+    }
+    @Test
+    public void insert1Test(){
+        AVLNode root = new AVLNode(null);
+        assertEquals(0, root.insert("c"));
+        assertEquals(-1, root.insert("c"));
+        assertEquals(1, root.insert("b"));
+        assertEquals(2, root.insert("a"));
+        assertEquals(1, root.insert("d"));
+        assertEquals(2, root.insert("e"));
     }
 }
