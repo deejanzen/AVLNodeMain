@@ -122,15 +122,17 @@ public class AVLNode{
             //left
             if (this.getRight().leftSubHeight() < this.getRight().rightSubHeight() ){
                 AVLNode oldRoot = new AVLNode(this.getKey());
-                oldRoot.setRight(null);
+
                 AVLNode pointer1;
                 AVLNode pointer2;
                 pointer1 = this.getLeft();
                 pointer2 = this.getRight().getLeft();
+
                 this.setKey(this.getRight().getKey());
-                this.setRight(this.getRight().getRight());
                 this.setLeft(oldRoot);
+                this.setRight(this.getRight().getRight());
                 oldRoot = null;
+
                 //rehang p1 p2
                 if(pointer1 != null) this.insertNode(pointer1);
                 if(pointer2 != null) this.insertNode(pointer2);
@@ -143,7 +145,8 @@ public class AVLNode{
             //right left. else if??
             else{
                 AVLNode oldRoot = new AVLNode(this.getKey());
-                oldRoot.setRight(null);
+                oldRoot.setLeft(this.getLeft());
+
                 AVLNode pointer1;
                 AVLNode pointer2;
                 pointer1 = this.getRight().getLeft().getLeft();
@@ -151,6 +154,7 @@ public class AVLNode{
 
                 this.setKey(this.getRight().getLeft().getKey());
                 this.setLeft(oldRoot);
+
                 this.getRight().setLeft(null);
 
                 if(pointer1 != null) this.insertNode(pointer1);
@@ -167,7 +171,7 @@ public class AVLNode{
             //right
             if (this.getLeft().leftSubHeight() > this.getLeft().rightSubHeight() ){
                 AVLNode oldRoot = new AVLNode(this.getKey());
-                oldRoot.setLeft(null);
+
                 AVLNode pointer1;
                 AVLNode pointer2;
                 pointer1 = this.getRight();
@@ -187,7 +191,8 @@ public class AVLNode{
             //left right
             else{
                 AVLNode oldRoot = new AVLNode(this.getKey());
-                oldRoot.setLeft(null);
+                oldRoot.setRight(this.getRight());
+
                 AVLNode pointer1;
                 AVLNode pointer2;
                 pointer1 = this.getLeft().getRight().getLeft();
@@ -195,6 +200,7 @@ public class AVLNode{
 
                 this.setKey(this.getLeft().getRight().getKey());
                 this.setRight(oldRoot);
+
                 this.getLeft().setRight(null);
 
                 if(pointer1 != null) this.insertNode(pointer1);
